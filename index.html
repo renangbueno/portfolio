@@ -1,58 +1,401 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Portfólio</title>
+    <title>Smilee - Aprendizado Divertido para Crianças</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+      <link rel="icon" type="image/x-icon" href="/favicon2.ico">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FFD166',  // Amarelo mais suave
+                        secondary: '#F72585', // Rosa vibrante
+                        accent: '#06D6A0',   // Verde água para contraste
+                        success: '#118AB2',  // Azul para complementar
+                        dark: '#073B4C',     // Azul escuro para textos
+                        light: '#FFFCF9',    // Branco levemente rosado
+                    },
+                    fontFamily: {
+                        'baloo': ['Baloo 2', 'cursive'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Baloo 2', cursive;
+            background-color: #FFFCF9;
+            scroll-behavior: smooth;
+        }
+        
+        .fun-border {
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+        }
+        
+        .decoration-circle {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: inline-block;
+            margin: 0 5px;
+        }
+        
+        .circle-1 { background-color: #FFD166; }
+        .circle-2 { background-color: #F72585; }
+        .circle-3 { background-color: #06D6A0; }
+        .circle-4 { background-color: #118AB2; }
+        
+        .mobile-menu {
+            transition: all 0.3s ease;
+        }
+        
+        .scribble {
+            position: absolute;
+            z-index: 0;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+        
+        .scribble-1 {
+            top: 15%;
+            left: 5%;
+            width: 120px;
+            height: 80px;
+            border: 8px solid #F72585;
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+            transform: rotate(25deg);
+        }
+        
+        .scribble-2 {
+            bottom: 10%;
+            right: 5%;
+            width: 150px;
+            height: 100px;
+            border: 10px solid #06D6A0;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            transform: rotate(-15deg);
+        }
+        
+        @media (max-width: 768px) {
+            .scribble {
+                display: none;
+            }
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Animações de aparecimento ao rolar */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .delay-1 { transition-delay: 0.2s; }
+        .delay-2 { transition-delay: 0.4s; }
+        .delay-3 { transition-delay: 0.6s; }
+    </style>
 </head>
 
-<body>
-    <center>
-        <img src="https://cdn-icons-png.freepik.com/256/3909/3909370.png?semt=ais_hybrid">
-        <h1>Eu sou o Renan</h1>
-        <h2>Eu ensino Programação</h2>
-        <p>Sou um futuro Engenheiro de Software.</p>
-        <p>Minhas habilidades:</p>
-        <table border="1">
-            <tr>
-                <td>HTML</td>
-                <td>CSS</td>
-                <td>JavaScript</td>
-                <td>Scratch</td>
-            </tr>
-        </table>
+<body class="text-gray-800 bg-light">
+    <!-- Elementos decorativos -->
+    <div class="scribble scribble-1"></div>
+    <div class="scribble scribble-2"></div>
 
-        <h2>Meus Projetos</h2>
+    <!-- Header -->
+    <header class="flex justify-between items-center p-4 md:p-6 max-w-6xl mx-auto">
+        <div class="text-2xl md:text-3xl font-bold text-primary">
+            <i class="fas fa-smile-beam mr-2"></i>Smilee
+        </div>
+        
+        <!-- Menu mobile -->
+        <button class="md:hidden text-dark" id="menu-toggle">
+            <i class="fas fa-bars text-2xl"></i>
+        </button>
+        
+        <nav class="hidden md:flex gap-6 text-dark font-semibold">
+            <a href="#" class="hover:text-primary transition">Início</a>
+            <a href="#services" class="hover:text-primary transition">Nossos serviços</a>
+            <a href="#stats" class="hover:text-primary transition">Resultados</a>
+            <a href="#testimonials" class="hover:text-primary transition">Depoimentos</a>
+        </nav>
+        <button class="hidden md:block bg-primary text-dark px-5 py-2 rounded-full shadow-lg hover:bg-opacity-90 transition">Entre em contato</button>
+    </header>
 
-        <table border="1">
-            <tr>
-                <td>
-                    <h3>Minha Biblioteca: Uma Webpage Personalizada</h3>
-                    <img src="https://http2.mlstatic.com/D_NQ_NP_886904-MLB73489304408_122023-O.webp">
-                    <p>Este projeto é uma página web que apresenta uma lista dos meus livros favoritos.</p>
-                    <a href="#">Veja o projeto</a>
-                </td>
-                <td>
-                    <h3>Decidindo o Futuro: Uma Jornada Interativa sobre a Inteligência Artificial</h3>
-                    <img src="https://http2.mlstatic.com/D_NQ_NP_886904-MLB73489304408_122023-O.webp">
-                    <p>Este projeto é um jogo interativo baseado em navegador que explora a IA na sociedade.</p>
-                    <a href="#">Veja o projeto</a>
-                </td>
-                <td>
-                    <h3>Explorando o Universo: Uma Aventura Interativa em Astronomia com Scratch</h3>
-                    <img src="https://http2.mlstatic.com/D_NQ_NP_886904-MLB73489304408_122023-O.webp">
-                    <p>Este projeto Scratch cria uma experiência interativa sobre astronomia.</p>
-                    <a href="#">Veja o projeto</a>
-                </td>
-            </tr>
-        </table>
+    <!-- Menu mobile -->
+    <div class="mobile-menu hidden bg-white shadow-lg rounded-lg mx-4 p-4 absolute w-11/12 z-10" id="mobile-nav">
+        <nav class="flex flex-col gap-4 text-dark font-semibold">
+            <a href="#" class="hover:text-primary transition py-2">Início</a>
+            <a href="#services" class="hover:text-primary transition py-2">Nossos serviços</a>
+            <a href="#stats" class="hover:text-primary transition py-2">Resultados</a>
+            <a href="#testimonials" class="hover:text-primary transition py-2">Depoimentos</a>
+            <button class="bg-primary text-dark px-5 py-2 rounded-full mt-4">Entre em contato</button>
+        </nav>
+    </div>
 
-        <h2>Entre em contato</h2>
-        <p><a href="https://github.com/renangbueno">GitHub</a></p>
+    <!-- Hero -->
+    <section class="max-w-6xl mx-auto grid md:grid-cols-2 items-center gap-8 p-6 py-10 md:py-16">
+        <div class="order-2 md:order-1 fade-in">
+            <h1 class="text-4xl md:text-5xl font-bold leading-tight text-dark">
+                Aprendizado que faz <br> 
+                <span class="text-secondary">crianças sorrirem</span>
+                <div class="mt-2">
+                    <span class="decoration-circle circle-1"></span>
+                    <span class="decoration-circle circle-2"></span>
+                    <span class="decoration-circle circle-3"></span>
+                    <span class="decoration-circle circle-4"></span>
+                </div>
+            </h1>
+            <p class="mt-4 text-lg text-gray-600">
+                Unimos pedagogia e psicologia para cuidar do desenvolvimento completo da criança: aprendizado, emoções, autoestima e bem-estar.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 mt-6">
+                <button class="bg-primary text-dark px-6 py-3 rounded-full shadow-lg hover:bg-opacity-90 transition">
+                    Agende uma aula experimental
+                </button>
+                <button class="border-2 border-secondary text-secondary px-6 py-3 rounded-full hover:bg-secondary hover:text-white transition">
+                    Conheça nossa metodologia
+                </button>
+            </div>
+        </div>
+        <div class="order-1 md:order-2 floating fade-in delay-1">
+            <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                 alt="Crianças aprendendo e sorrindo" 
+                 class="rounded-2xl shadow-xl fun-border">
+        </div>
+    </section>
 
-        <p>Copyright 2024. Produzido por Renan Bueno</p>
-    </center>
+    <!-- Features -->
+    <section id="services" class="services py-12 md:py-16 bg-white relative">
+        <div class="max-w-6xl mx-auto px-4 relative z-10">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4">
+                    Nossos serviços
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Oferecemos um acompanhamento completo para transformar dificuldades em conquistas e devolver a confiança no aprendizado.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="service-card bg-light rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition fade-in delay-1">
+                    <div class="w-20 h-20 flex items-center justify-center rounded-full bg-primary bg-opacity-30 mx-auto mb-6">
+                        <i class="fas fa-chalkboard-teacher text-3xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-dark mb-4">Acompanhamento escolar</h3>
+                    <p class="text-gray-600">Professores especialistas identificam dificuldades e aplicam estratégias que tornam o aprendizado leve e motivador.</p>
+                </div>
+                <div class="service-card bg-light rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition fade-in delay-2">
+                    <div class="w-20 h-20 flex items-center justify-center rounded-full bg-secondary bg-opacity-30 mx-auto mb-6">
+                        <i class="fas fa-brain text-3xl text-secondary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-dark mb-4">Desenvolvimento cognitivo</h3>
+                    <p class="text-gray-600">Atividades lúdicas que estimulam o raciocínio, a memória e a concentração de forma divertida.</p>
+                </div>
+                <div class="service-card bg-light rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition fade-in delay-3">
+                    <div class="w-20 h-20 flex items-center justify-center rounded-full bg-accent bg-opacity-30 mx-auto mb-6">
+                        <i class="fas fa-heart text-3xl text-accent"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-dark mb-4">Inteligência emocional</h3>
+                    <p class="text-gray-600">Trabalhamos as emoções e habilidades sociais para formar crianças confiantes e felizes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section id="stats" class="stats py-12 md:py-16 bg-gradient-to-r from-primary to-secondary text-white relative">
+        <div class="max-w-6xl mx-auto px-4 relative z-10">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    Por que escolher a Smilee?
+                </h2>
+                <p class="text-lg opacity-90 max-w-2xl mx-auto">Acreditamos que toda criança tem potencial para aprender e crescer com alegria.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                <div class="stat-item bg-white bg-opacity-20 backdrop-blur-sm rounded-2xl p-6 text-center shadow-lg fade-in delay-1">
+                    <h3 class="text-4xl md:text-5xl font-bold mb-2">1k+</h3>
+                    <p class="text-lg opacity-90">Alunos felizes</p>
+                </div>
+                <div class="stat-item bg-white bg-opacity-20 backdrop-blur-sm rounded-2xl p-6 text-center shadow-lg fade-in delay-2">
+                    <h3 class="text-4xl md:text-5xl font-bold mb-2">+300</h3>
+                    <p class="text-lg opacity-90">Aprovações em exames</p>
+                </div>
+                <div class="stat-item bg-white bg-opacity-20 backdrop-blur-sm rounded-2xl p-6 text-center shadow-lg fade-in delay-3">
+                    <h3 class="text-4xl md:text-5xl font-bold mb-2">+2</h3>
+                    <p class="text-lg opacity-90">Anos de experiência</p>
+                </div>
+            </div>
+            
+            <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white bg-opacity-20 backdrop-blur-sm rounded-2xl p-6 fade-in delay-1">
+                    <h3 class="text-xl font-bold mb-3">Nossa missão</h3>
+                    <p>Transformar o aprendizado em uma experiência divertida e significativa, onde cada criança possa desenvolver seu potencial com confiança e alegria.</p>
+                </div>
+                <div class="bg-white bg-opacity-20 backdrop-blur-sm rounded-2xl p-6 fade-in delay-2">
+                    <h3 class="text-xl font-bold mb-3">Nossa visão</h3>
+                    <p>Ser referência em educação infantil, criando um ambiente onde crianças possam aprender, brincar e crescer de forma integral e harmoniosa.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="testimonials py-12 md:py-16 bg-light relative">
+        <div class="max-w-6xl mx-auto px-4 relative z-10">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4">
+                    O que nossos alunos e pais dizem
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Depoimentos reais sobre evolução nos estudos, autoestima e felicidade das crianças.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="testimonial-card bg-white rounded-2xl p-6 shadow-lg relative fade-in delay-1">
+                    <div class="absolute top-4 left-4 text-5xl text-primary opacity-10">"</div>
+                    <p class="text-gray-600 mb-6 relative z-10 italic">"Meu filho ganhou confiança e aprendeu a gostar de estudar. O resultado foi visível não só nas notas, mas na alegria dele!"</p>
+                    <div class="flex items-center">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                             alt="Letícia Martins" 
+                             class="w-12 h-12 rounded-full border-2 border-primary mr-4 object-cover">
+                        <div>
+                            <h4 class="font-bold text-dark">Letícia Martins</h4>
+                            <p class="text-gray-500">Mãe do Carlos Eduardo, 7 anos</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card bg-white rounded-2xl p-6 shadow-lg relative fade-in delay-2">
+                    <div class="absolute top-4 left-4 text-5xl text-primary opacity-10">"</div>
+                    <p class="text-gray-600 mb-6 relative z-10 italic">"O suporte da Smilee fez toda a diferença. Minha filha se sente acolhida e feliz, e agora adora ir para a escola!"</p>
+                    <div class="flex items-center">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                             alt="Felipe Souza" 
+                             class="w-12 h-12 rounded-full border-2 border-primary mr-4 object-cover">
+                        <div>
+                            <h4 class="font-bold text-dark">Felipe Souza</h4>
+                            <p class="text-gray-500">Pai da Beatriz, 6 anos</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta py-12 md:py-16 bg-gradient-to-r from-accent to-success text-white text-center relative">
+        <div class="max-w-2xl mx-auto px-4 relative z-10 fade-in">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Venha nos visitar!</h2>
+            <p class="text-lg mb-8">Agende uma visita e conheça nossa estrutura preparada para oferecer o melhor para seu filho.</p>
+            <a href="#contact" class="inline-block bg-white text-dark px-8 py-3 rounded-full font-bold shadow-lg hover:bg-opacity-90 transition">
+                Agendar visita
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="py-12 bg-dark text-white relative">
+        <div class="max-w-6xl mx-auto px-4 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <div class="fade-in">
+                    <h3 class="text-2xl font-bold mb-4 text-primary">
+                        <i class="fas fa-smile-beam mr-2"></i>Smilee
+                    </h3>
+                    <p class="text-gray-400 mb-6">Pais que confiam, filhos que se desenvolvem com alegria.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-700 hover:bg-primary transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-700 hover:bg-primary transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-700 hover:bg-primary transition">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="fade-in delay-1">
+                    <h3 class="text-xl font-bold mb-4 text-primary">Acesso rápido</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition">Serviços</a></li>
+                        <li><a href="#stats" class="text-gray-400 hover:text-white transition">Resultados</a></li>
+                        <li><a href="#testimonials" class="text-gray-400 hover:text-white transition">Depoimentos</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="fade-in delay-2">
+                    <h3 class="text-xl font-bold mb-4 text-primary">Entre em contato</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-center text-gray-400">
+                            <i class="fas fa-envelope mr-3 text-primary"></i> contato@smilee.com
+                        </li>
+                        <li class="flex items-center text-gray-400">
+                            <i class="fas fa-phone mr-3 text-primary"></i> (43) 91111-1111
+                        </li>
+                        <li class="flex items-center text-gray-400">
+                            <i class="fas fa-map-marker-alt mr-3 text-primary"></i> 
+                            <span>Rua Goias, 557 - Centro, Cornélio Procópio - PR</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-gray-700 text-center text-gray-400 fade-in">
+                <p>&copy; 2023 Smilee - Aprendizado Divertido. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu mobile toggle
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const mobileNav = document.getElementById('mobile-nav');
+            mobileNav.classList.toggle('hidden');
+        });
+        
+        // Fechar menu ao clicar fora
+        document.addEventListener('click', function(event) {
+            const menuToggle = document.getElementById('menu-toggle');
+            const mobileNav = document.getElementById('mobile-nav');
+            
+            if (!menuToggle.contains(event.target) && !mobileNav.contains(event.target)) {
+                mobileNav.classList.add('hidden');
+            }
+        });
+
+        // Animação de aparecimento ao rolar
+        function checkFade() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+        
+        // Verificar ao carregar e ao rolar
+        window.addEventListener('scroll', checkFade);
+        window.addEventListener('load', checkFade);
+    </script>
 </body>
-
 </html>
